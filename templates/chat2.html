@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💙 BlueCircle AI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(180deg, #e6f1ff 0%, #ffffff 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #007BFF;
+      color: white;
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    #chat-box {
+      width: 90%;
+      max-width: 600px;
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .message {
+      margin: 0.75rem 0;
+      line-height: 1.4;
+    }
+
+    .user {
+      text-align: right;
+      color: #444;
+    }
+
+    .bot {
+      text-align: left;
+      color: #007BFF;
+    }
+
+    footer {
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #005FCC;
+    }
+  </style>
+</head>
+<body>
+  <header>💙 BlueCircle AI</header>
+
+  <div id="chat-box"></div>
+
+  <footer>
+    <input id="input-box" type="text" placeholder="Type your message..." />
+    <button id="send-btn">Send</button>
+  </footer>
+
+  <script>
+    const sendBtn = document.getElementById('send-btn');
+    const inputBox = document.getElementById('input-box');
+    const chatBox = document.getElementById('chat-box');
+
+    function appendMessage(role, text) {
+      const div = document.createElement('div');
+      div.classList.add('message', role);
+      div.textContent = text;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const message = inputBox.value.trim();
+      if (!message) return;
+      appendMessage('user', message);
+      inputBox.value = '';
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+      const data = await res.json();
+      appendMessage('bot', data.response);
+    }
+
+    sendBtn.onclick = sendMessage;
+    inputBox.addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>

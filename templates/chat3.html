@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💙 BlueCircle AI — LiVEiT®</title>
+  <style>
+    :root {
+      --bg-dark: #333333;
+      --text-light: #818181;
+      --accent: #7ebecd;
+      --accent-hover: #9bd4df;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      background-color: var(--bg-dark);
+      border-bottom: 1px solid var(--accent);
+      color: var(--accent);
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    #chat-box {
+      width: 90%;
+      max-width: 600px;
+      flex: 1;
+      background-color: #262626;
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .message {
+      margin: 0.75rem 0;
+      line-height: 1.5;
+    }
+
+    .user {
+      text-align: right;
+      color: #dfdfdf;
+    }
+
+    .bot {
+      text-align: left;
+      color: var(--accent);
+    }
+
+    footer {
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      flex: 1;
+      padding: 0.75rem;
+      background-color: #222;
+      color: var(--text-light);
+      border: 1px solid #555;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    button {
+      background-color: var(--accent);
+      color: var(--bg-dark);
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background-color: var(--accent-hover);
+    }
+  </style>
+</head>
+<body>
+  <header>💙 BlueCircle AI — LiVEiT®</header>
+
+  <div id="chat-box"></div>
+
+  <footer>
+    <input id="input-box" type="text" placeholder="Type your message…" />
+    <button id="send-btn">Send</button>
+  </footer>
+
+  <script>
+    const topic = "{{ topic if topic else '' }}";
+    const sendBtn = document.getElementById('send-btn');
+    const inputBox = document.getElementById('input-box');
+    const chatBox = document.getElementById('chat-box');
+
+    function appendMessage(role, text) {
+      const div = document.createElement('div');
+      div.classList.add('message', role);
+      div.textContent = text;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const message = inputBox.value.trim();
+      if (!message) return;
+      appendMessage('user', message);
+      inputBox.value = '';
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, topic })
+      });
+      const data = await res.json();
+      appendMessage('bot', data.response);
+    }
+
+    sendBtn.onclick = sendMessage;
+    inputBox.addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
