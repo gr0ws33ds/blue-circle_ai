@@ -2,104 +2,166 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>💙 BlueCircle AI — LiVEiT®</title>
   <style>
-    :root {
-      --bg-dark: #333333;
-      --text-light: #818181;
-      --accent: #7ebecd;
-      --accent-hover: #9bd4df;
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #f9fafc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  header {
+    width: 100%;
+    background: #005bbb;
+    color: white;
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  #chat-box {
+    flex: 1;
+    width: 90%;
+    max-width: 600px;
+    height: 65vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 0.8rem;
+  }
+
+  #input-box {
+    width: 70%;
+    padding: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  #send-btn {
+    padding: 0.9rem 1.2rem;
+    margin-left: 0.5rem;
+    background: #005bbb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+
+  #send-btn:hover {
+    background: #0077ee;
+  }
+
+  /* Messages styling */
+  .message {
+    margin: 0.5rem 0;
+    padding: 0.8rem 1rem;
+    border-radius: 15px;
+    max-width: 80%;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .message.user {
+    background-color: #e0f7ff;
+    align-self: flex-end;
+    text-align: right;
+  }
+
+  .message.bot {
+    background-color: #f2f2f2;
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    #chat-box {
+      width: 95%;
+      height: 60vh;
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+
+    #input-box {
+      width: 65%;
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+
+    #send-btn {
+      font-size: 1rem;
+      padding: 0.8rem 1rem;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100vh;
+      padding: 0.3rem;
     }
 
     header {
-      width: 100%;
-      background-color: var(--bg-dark);
-      border-bottom: 1px solid var(--accent);
-      color: var(--accent);
-      text-align: center;
-      padding: 1rem 0;
-      font-size: 1.5rem;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      font-size: 1.1rem;
+      padding: 0.6rem;
     }
+  }
+/* Typing indicator */
+.typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0.5rem 0;
+  background-color: #f2f2f2;
+  border-radius: 15px;
+  padding: 0.6rem 1rem;
+  width: fit-content;
+}
 
-    #chat-box {
-      width: 90%;
-      max-width: 600px;
-      flex: 1;
-      background-color: #262626;
-      border: 1px solid #444;
-      border-radius: 12px;
-      padding: 1rem;
-      margin: 1rem 0;
-      overflow-y: auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #777;
+  border-radius: 50%;
+  animation: blink 1.2s infinite ease-in-out;
+}
 
-    .message {
-      margin: 0.75rem 0;
-      line-height: 1.5;
-    }
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
 
-    .user {
-      text-align: right;
-      color: #dfdfdf;
-    }
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
-    .bot {
-      text-align: left;
-      color: var(--accent);
-    }
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+</style>
 
-    footer {
-      width: 90%;
-      max-width: 600px;
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
 
-    input {
-      flex: 1;
-      padding: 0.75rem;
-      background-color: #222;
-      color: var(--text-light);
-      border: 1px solid #555;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    button {
-      background-color: var(--accent);
-      color: var(--bg-dark);
-      border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      font-weight: 600;
-    }
-
-    button:hover {
-      background-color: var(--accent-hover);
-    }
-  </style>
 </head>
 <body>
   <header>💙 BlueCircle AI — LiVEiT®</header>
@@ -126,18 +188,36 @@
     }
 
     async function sendMessage() {
-      const message = inputBox.value.trim();
-      if (!message) return;
-      appendMessage('user', message);
-      inputBox.value = '';
-      const res = await fetch('/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, topic })
-      });
-      const data = await res.json();
-      appendMessage('bot', data.response);
-    }
+  const message = inputBox.value.trim();
+  if (!message) return;
+
+  appendMessage('user', message);
+  inputBox.value = '';
+
+  // Add typing indicator
+  const typingDiv = document.createElement('div');
+  typingDiv.classList.add('typing');
+  typingDiv.innerHTML = `
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+  `;
+  chatBox.appendChild(typingDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // Fetch response
+  const res = await fetch('/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, topic })
+  });
+  const data = await res.json();
+
+  // Remove typing indicator and show reply
+  typingDiv.remove();
+  appendMessage('bot', data.response);
+}
+
 
     sendBtn.onclick = sendMessage;
     inputBox.addEventListener('keypress', e => {
