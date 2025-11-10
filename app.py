@@ -34,6 +34,52 @@ def chat():
     response = llm.invoke(formatted)
 
     return jsonify({"response": response.content})
+@app.route("/widget.js")
+def widget_js():
+    js_code = """
+    document.addEventListener('DOMContentLoaded', () => {
+      // Create the chat bubble
+      const bubble = document.createElement('div');
+      bubble.innerHTML = '💬';
+      bubble.style.position = 'fixed';
+      bubble.style.bottom = '20px';
+      bubble.style.right = '20px';
+      bubble.style.background = '#0077ee';
+      bubble.style.color = 'white';
+      bubble.style.borderRadius = '50%';
+      bubble.style.width = '60px';
+      bubble.style.height = '60px';
+      bubble.style.display = 'flex';
+      bubble.style.alignItems = 'center';
+      bubble.style.justifyContent = 'center';
+      bubble.style.fontSize = '28px';
+      bubble.style.cursor = 'pointer';
+      bubble.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+      bubble.style.zIndex = '9999';
+      document.body.appendChild(bubble);
+
+      // Create the chat iframe (hidden at first)
+      const iframe = document.createElement('iframe');
+      iframe.src = '/';
+      iframe.style.position = 'fixed';
+      iframe.style.bottom = '100px';
+      iframe.style.right = '20px';
+      iframe.style.width = '400px';
+      iframe.style.height = '600px';
+      iframe.style.border = 'none';
+      iframe.style.borderRadius = '16px';
+      iframe.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+      iframe.style.zIndex = '9998';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      // Toggle iframe visibility
+      bubble.addEventListener('click', () => {
+        iframe.style.display = iframe.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+    """
+    return js_code, 200, {'Content-Type': 'application/javascript'}
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050, debug=True)
