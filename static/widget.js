@@ -13,7 +13,7 @@ style.innerHTML = `
     font-size: 14px;
   }
   .user-bubble {
-    background: #0078ff;
+    background: #5A6DFC;
     color: white;
     align-self: flex-end;
     border-bottom-right-radius: 5px;
@@ -66,12 +66,28 @@ chatButton.style.position = "fixed";
 chatButton.style.bottom = "20px";
 chatButton.style.right = "20px";
 chatButton.style.zIndex = "1000";
-chatButton.style.padding = "10px 20px";
-chatButton.style.borderRadius = "20px";
-chatButton.style.background = "#0078ff";
+
+// 🎨 Enhanced chat button styling
+chatButton.style.padding = "12px 26px";
+chatButton.style.borderRadius = "25px";
+chatButton.style.background = "#5A6DFC";
 chatButton.style.color = "white";
 chatButton.style.border = "none";
 chatButton.style.cursor = "pointer";
+chatButton.style.fontSize = "16px";
+chatButton.style.boxShadow = "0 0 12px rgba(90, 109, 252, 0.7)";
+chatButton.style.transition = "all 0.3s ease";
+
+// Hover glow effect
+chatButton.onmouseover = () => {
+  chatButton.style.transform = "scale(1.05)";
+  chatButton.style.boxShadow = "0 0 22px rgba(90, 109, 252, 0.9)";
+};
+chatButton.onmouseout = () => {
+  chatButton.style.transform = "scale(1)";
+  chatButton.style.boxShadow = "0 0 12px rgba(90, 109, 252, 0.7)";
+};
+
 document.body.appendChild(chatButton);
 
 // Create chat window
@@ -97,17 +113,52 @@ chatLog.style.display = "flex";
 chatLog.style.flexDirection = "column";
 chatLog.style.overflowY = "auto";
 
+// Input area container
+const inputContainer = document.createElement("div");
+inputContainer.style.display = "flex";
+inputContainer.style.borderTop = "1px solid #ccc";
+
+// Input field
 const chatInput = document.createElement("input");
 chatInput.type = "text";
 chatInput.placeholder = "Type a message...";
 chatInput.style.border = "none";
 chatInput.style.padding = "10px";
-chatInput.style.width = "100%";
-chatInput.style.boxSizing = "border-box";
-chatInput.style.borderTop = "1px solid #ccc";
+chatInput.style.flex = "1";
+chatInput.style.fontSize = "14px";
+chatInput.style.outline = "none";
 
+// ✈️ Send button with take-off animation
+const sendButton = document.createElement("button");
+sendButton.innerHTML = "✈️"; // paper-plane icon
+sendButton.title = "Send message";
+sendButton.style.background = "#5A6DFC";
+sendButton.style.color = "white";
+sendButton.style.border = "none";
+sendButton.style.padding = "0 16px";
+sendButton.style.cursor = "pointer";
+sendButton.style.borderTopRightRadius = "8px";
+sendButton.style.transition = "all 0.3s ease";
+sendButton.style.fontSize = "18px";
+sendButton.style.boxShadow = "0 0 8px rgba(90, 109, 252, 0.6)";
+sendButton.style.display = "flex";
+sendButton.style.alignItems = "center";
+sendButton.style.justifyContent = "center";
+sendButton.style.transformOrigin = "center bottom";
+sendButton.onmouseover = () => {
+  sendButton.style.boxShadow = "0 0 16px rgba(90, 109, 252, 0.9)";
+  sendButton.style.transform = "scale(1.1) rotate(-20deg) translateY(-2px)";
+};
+sendButton.onmouseout = () => {
+  sendButton.style.boxShadow = "0 0 8px rgba(90, 109, 252, 0.6)";
+  sendButton.style.transform = "scale(1) rotate(0deg) translateY(0)";
+};
+
+// Assemble input area
+inputContainer.appendChild(chatInput);
+inputContainer.appendChild(sendButton);
 chatWindow.appendChild(chatLog);
-chatWindow.appendChild(chatInput);
+chatWindow.appendChild(inputContainer);
 document.body.appendChild(chatWindow);
 
 // Typing animation
@@ -128,7 +179,7 @@ function showTypingIndicator() {
   const indicator = document.createElement("div");
   indicator.classList.add("bot-bubble", "typing-indicator");
   indicator.innerHTML = `
-    <b>BlueCircle:</b>
+    <b>#01 LiVEiT® BLUE:</b>
     <div style="display:inline-flex; margin-left:6px;">
       <span class="dot"></span>
       <span class="dot"></span>
@@ -152,7 +203,7 @@ function showIntroMessage() {
 
     const introDiv = document.createElement("div");
     introDiv.classList.add("bot-bubble");
-    introDiv.innerHTML = `<b>BlueCircle:</b> `;
+    introDiv.innerHTML = `<b>LiVEiT® BLUE #01:</b> `;
     chatLog.appendChild(introDiv);
 
     const span = document.createElement("span");
@@ -160,7 +211,7 @@ function showIntroMessage() {
     chatLog.scrollTop = chatLog.scrollHeight;
 
     const messageText =
-      "👋 Hi there! I'm BLUECiRCLE Ai, your compassionate wellness companion, how are you feeling today?";
+      "👋 Hi there! I'm BlueCircle, your compassionate wellness companion. How are you feeling today?";
 
     typeMessage(span, messageText, 35);
   }, 1200);
@@ -182,45 +233,48 @@ chatButton.onclick = () => {
   }
 };
 
-// Send message
-chatInput.addEventListener("keypress", async (e) => {
-  if (e.key === "Enter" && chatInput.value.trim() !== "") {
-    const userMessage = chatInput.value.trim();
+// Send message logic
+async function sendMessage() {
+  const userMessage = chatInput.value.trim();
+  if (userMessage === "") return;
 
-    const userDiv = document.createElement("div");
-    userDiv.classList.add("chat-bubble", "user-bubble");
-    userDiv.innerHTML = `<b>You:</b> ${userMessage}`;
-    chatLog.appendChild(userDiv);
-    chatInput.value = "";
+  const userDiv = document.createElement("div");
+  userDiv.classList.add("chat-bubble", "user-bubble");
+  userDiv.innerHTML = `<b>You:</b> ${userMessage}`;
+  chatLog.appendChild(userDiv);
+  chatInput.value = "";
 
-    const typingIndicator = showTypingIndicator();
+  const typingIndicator = showTypingIndicator();
 
-    try {
-      const response = await fetch("/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage }),
-      });
-      const data = await response.json();
+  try {
+    const response = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage }),
+    });
+    const data = await response.json();
 
-      setTimeout(() => {
-        typingIndicator.remove();
-        const botDiv = document.createElement("div");
-        botDiv.classList.add("chat-bubble", "bot-bubble");
-        botDiv.innerHTML = `<b>BlueCircle:</b> ${
-          data.response || "(error)"
-        }`;
-        chatLog.appendChild(botDiv);
-        chatLog.scrollTop = chatLog.scrollHeight;
-      }, 800);
-    } catch {
+    setTimeout(() => {
       typingIndicator.remove();
       const botDiv = document.createElement("div");
       botDiv.classList.add("chat-bubble", "bot-bubble");
-      botDiv.innerHTML = `<b>BlueCircle:</b> connection error`;
+      botDiv.innerHTML = `<b>BlueCircle:</b> ${data.response || "(error)"}`;
       chatLog.appendChild(botDiv);
-    }
-
-    chatLog.scrollTop = chatLog.scrollHeight;
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }, 800);
+  } catch {
+    typingIndicator.remove();
+    const botDiv = document.createElement("div");
+    botDiv.classList.add("chat-bubble", "bot-bubble");
+    botDiv.innerHTML = `<b>BlueCircle:</b> connection error`;
+    chatLog.appendChild(botDiv);
   }
+
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+// Send on Enter or click
+chatInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
 });
+sendButton.onclick = sendMessage;
