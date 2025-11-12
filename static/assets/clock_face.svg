@@ -1,0 +1,14 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <ns0:circle id="circle01" cx="250.00" cy="50.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle02" cx="350.00" cy="76.79" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle03" cx="423.21" cy="150.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle04" cx="450.00" cy="250.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle05" cx="423.21" cy="350.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle06" cx="350.00" cy="423.21" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle07" cx="250.00" cy="450.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle08" cx="150.00" cy="423.21" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle09" cx="76.79" cy="350.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle10" cx="50.00" cy="250.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle11" cx="76.79" cy="150.00" r="20" fill="blue" stroke="black" stroke-width="2" />
+  <ns0:circle id="circle12" cx="150.00" cy="76.79" r="20" fill="blue" stroke="black" stroke-width="2" />
+</ns0:svg>
