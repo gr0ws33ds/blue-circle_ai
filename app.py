@@ -12,12 +12,17 @@ app = Flask(__name__)
 # Initialize model
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.7)
 
-# --- Route for your main page ---
+# ------------------------------------------------------
+# MAIN PAGE ROUTE
+# ------------------------------------------------------
 @app.route("/")
 def home():
     return render_template("index01.html")  # loads your main homepage
 
-# --- Chat endpoint (AI logic) ---
+
+# ------------------------------------------------------
+# CHAT ENDPOINT (AI LOGIC)
+# ------------------------------------------------------
 @app.route("/chat", methods=["POST"])
 def chat():
     user_input = request.json.get("message", "")
@@ -36,12 +41,29 @@ def chat():
     return jsonify({"response": response.content})
 
 
-# --- Serve your local widget.js from /static ---
+# ------------------------------------------------------
+# STATIC FILE SERVING FOR WIDGET
+# ------------------------------------------------------
 @app.route("/widget.js")
 def widget_js():
     return send_from_directory("static", "widget.js")
 
 
+# ------------------------------------------------------
+# NEW: HEALTH CHECK ENDPOINT
+# ------------------------------------------------------
+@app.get("/health")
+def health():
+    """
+    Simple health check used by your WordPress preloader.
+    Returns 200 instantly when the AI server is awake.
+    """
+    return {"status": "ok"}, 200
+
+
+# ------------------------------------------------------
+# FLASK STARTER
+# ------------------------------------------------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5050))
     app.run(host="0.0.0.0", port=port, debug=True)
