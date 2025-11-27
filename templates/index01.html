@@ -5,164 +5,165 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiVEiT®</title>
   <link rel="stylesheet" href="static/assets/hover_styles01.css">
+
   <style>
-  :root {
-    --modal-font-family: 'Arial', sans-serif;
-  }
+    :root {
+      --modal-font-family: 'Arial', sans-serif;
+    }
 
-  body {
-    font-family: var(--modal-font-family);
-    background-color: #111315; /* fixed */
-    color: #d4d7de; /* updated to site standard */
-  }
+    body {
+      font-family: var(--modal-font-family);
+      background-color: #111315;
+      color: #d4d7de;
+    }
 
-  h1, p {
-    text-align: left;
-  }
+    h1, p {
+      text-align: left;
+    }
 
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6); /* subtle dark backdrop */
-  }
+    /* ------------------------- */
+    /*        MODAL STYLES       */
+    /* ------------------------- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
 
-  .modal-content {
-    background-color: #111315; /* fixed */
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #7ebecd; /* matches brand */
-    border-radius: 16px;
-    width: 80%;
-    max-width: 500px;
-    color: #d4d7de;
-    text-align: left;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+    .modal-content {
+      background-color: rgba(17,19,21, 0.75);
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #818181; /* ⭐ NEW GREY BORDER */
+      border-radius: 16px;
+      width: 80%;
+      max-width: 500px;
+      color: #d4d7de;
+      text-align: left;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-  .close {
-    color: #d4d7de;
-    float: right;
-    font-size: 28px;
-    cursor: pointer;
-    text-shadow: 0 0 6px #000;
-  }
+    .close {
+      color: #d4d7de;
+      float: right;
+      font-size: 28px;
+      cursor: pointer;
+      text-shadow: 0 0 6px #000;
+    }
 
-  .close:hover {
-    color: #ffffff;
-  }
+    .close:hover {
+      color: #ffffff;
+    }
 
-  a {
-    display: inline-block;
-    padding: 10px 16px;
-    background-color: #7ebecd; /* branded button */
-    color: #0f1012; /* readable on aqua */
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: opacity 0.3s;
-  }
+    a {
+      display: inline-block;
+      padding: 10px 16px;
+      background-color: #7ebecd;
+      color: #0f1012;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
 
-  a:hover {
-    opacity: 0.8;
-  }
-</style>
+    a:hover {
+      opacity: 0.8;
+    }
+  </style>
 
 </head>
 <body>
-  <div style="margin-top: 50px;">
-    <h1 style="text-align:center;">
-  L<span style="color:#7ebecd; text-shadow: 0 0 8px #7ebecd;">i</span>VE<span style="color:#7ebecd; text-shadow: 0 0 6px #7ebecd;">i</span>T® PREM<span style="color:#7ebecd; text-shadow: 0 0 6px #7ebecd;">i</span>UM
-</h1>
 
-<p><center>gr<span style="color:#7ebecd; text-shadow: 0 0 8px #7ebecd;">0</span>wheal<span style="color:#7ebecd; text-shadow: 0 0 6px #7ebecd;">THC</span>are©</center></p>
-<br><br>
-    
+<div style="margin-top: 50px;">
+  <h1 style="text-align:center;">
+    L<span style="color:#7ebecd; text-shadow: 0 0 8px #7ebecd;">i</span>VE<span style="color:#7ebecd; text-shadow: 0 0 6px #7ebecd;">i</span>T® PREM<span style="color:#7ebecd; text-shadow: 0 0 6px #7ebecd;">i</span>UM
+  </h1>
 
-    <div style="display: flex; justify-content: center; overflow: hidden;">
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 400px;">
-        <circle cx="200" cy="40" r="25" fill="#111315" id="circle12" stroke="#7ebecd" stroke-width="6"></circle>
-        <circle cx="280" cy="61" r="25" fill="#111315" id="circle01" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="338" cy="120" r="25" fill="#111315" id="circle02" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="360" cy="200" r="25" fill="#111315" id="circle03" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="338" cy="280" r="25" fill="#111315" id="circle04" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="280" cy="338" r="25" fill="#111315" id="circle05" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="200" cy="360" r="25" fill="#111315" id="circle06" stroke="#ffffff" stroke-width="6"></circle>
-        <circle cx="120" cy="338" r="25" fill="#111315" id="circle07" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="61" cy="280" r="25" fill="#111315" id="circle08" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="40" cy="200" r="25" fill="#111315" id="circle09" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="61" cy="120" r="25" fill="#111315" id="circle10" stroke="#818181" stroke-width="1"></circle>
-        <circle cx="120" cy="61" r="25" fill="#111315" id="circle11" stroke="#818181" stroke-width="1"></circle>
-      </svg>
-    </div>
+  <p><center>gr<span style="color:#7ebecd; text-shadow: 0 0 8px #7ebecd;">0</span>wheal<span style="color:#7ebecd; text-shadow: 0 0 6px #7ebecd;">THC</span>are©</center></p>
+  <br><br>
+
+  <div style="display:flex; justify-content:center; overflow:hidden;">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:400px;">
+
+      <circle cx="200" cy="40" r="25" fill="#111315" id="circle12" stroke="#7ebecd" stroke-width="6"></circle>
+      <circle cx="280" cy="61" r="25" fill="#111315" id="circle01" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="338" cy="120" r="25" fill="#111315" id="circle02" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="360" cy="200" r="25" fill="#111315" id="circle03" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="338" cy="280" r="25" fill="#111315" id="circle04" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="280" cy="338" r="25" fill="#111315" id="circle05" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="200" cy="360" r="25" fill="#111315" id="circle06" stroke="#ffffff" stroke-width="6"></circle>
+      <circle cx="120" cy="338" r="25" fill="#111315" id="circle07" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="61" cy="280" r="25" fill="#111315" id="circle08" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="40" cy="200" r="25" fill="#111315" id="circle09" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="61" cy="120" r="25" fill="#111315" id="circle10" stroke="#818181" stroke-width="1"></circle>
+      <circle cx="120" cy="61" r="25" fill="#111315" id="circle11" stroke="#818181" stroke-width="1"></circle>
+
+    </svg>
   </div>
+</div>
 
-  <!-- Keep only ONE modal with a unique ID -->
-  <div class="modal" id="circle-modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 id="modal-header">Default Header</h2>
-      <p id="modal-text">Default text content goes here.</p>
-      <a href="#" id="modal-link" target="_blank">CLiCK HERE</a>
-    </div>
+<!-- SINGLE REUSABLE MODAL -->
+<div class="modal" id="circle-modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modal-header">Default Header</h2>
+    <p id="modal-text">Default text content goes here.</p>
+    <a href="#" id="modal-link" target="_blank">CLiCK HERE</a>
   </div>
+</div>
 
-  <script>
-    const modal = document.getElementById('circle-modal');
-    const circles = document.querySelectorAll('circle');
-    const modalHeader = document.getElementById('modal-header');
-    const modalText = document.getElementById('modal-text');
-    const modalLink = document.getElementById('modal-link');
-    const closeModal = document.querySelector('.close');
+<script>
+  const modal = document.getElementById('circle-modal');
+  const circles = document.querySelectorAll('circle');
+  const modalHeader = document.getElementById('modal-header');
+  const modalText = document.getElementById('modal-text');
+  const modalLink = document.getElementById('modal-link');
+  const closeModal = document.querySelector('.close');
 
-    const circleData = {
-      circle01: { header: "#01 BLUE : Understanding Anxiety", text: "Blue is a guided course for managing anxiety using a unique fibre optic brain network analogy, practical mindfulness tools and insights into how cannabinoids may help regulate emotional health", link: "https://gr0whealthcare.com/courses/liveit-blue-understanding-and-managing-anxiety/", image: "static/images/circle01.4.jpg" },
-      circle02: { header: "#02 ORANGE: Understanding Inflammation & Nutrition", text: "This short course blends science, mindfulness, and the LiVEiT® photo diary method to guide lasting change", link: "https://gr0whealthcare.com/courses/02-orange-understanding-inflammation-rebuilding-through-nutrition/", image: "static/images/circle02.4.jpg" },
-      circle03: { header: "#03 GREEN: Nature, Movement & Cannabinoids", text: "Whether you’re managing burnout, chronic pain, or simply seeking natural healing, this course will guide you step by step through practical tools and techniques to support your ECS naturally", link: "https://gr0whealthcare.com/courses/03-green-rebuilding-with-nature-movement-cannabinoids/", image: "static/images/circle03.4.jpg" },
-      circle04: { header: "#04 BROWN: Pain Management", text: "Time and time again, our clients say that Fourfive products have proved to be very effective in the reduction of pain", link: "https://gr0whealthcare.com/courses/04-pain-management/", image: "static/images/circle04.4.jpg" },
-      circle05: { header: "T05 GREY: Tech Support for Medical Cannabis referrals (UK)", text: "Navigating the process of applying for a legal medical cannabis prescription in the UK can feel overwhelming, but you don’t have to do it alone. Our FREE tech support service provides guidance and digital assistance to ensure the process is smooth and stress free", link: "https://gr0whealthcare.com/courses/05-referrals/", image: "static/images/circle05.4.jpg" },
-      circle06: { header: "T06 WHITE: LiVEiT® PRO LiCENCE (YEARLY)", text: "Better health begins with acceptance, grows through new angles of understanding, shifts with a change in perception, and is strengthened through education. Become a certified LiVEiT® PRO coach with access to one to one support. Find out more click the link below", link: "https://gr0whealthcare.com/courses/06-white-balance-liveit-coaching/", image: "static/images/circle06.4.jpg" },
-      circle07: { header: "T07 RED: meNTAL HEALTH", text: "LiVEiT® PRO LiCENCE (YEARLY) for LiVEiT® coaches", link: "https://gr0whealthcare.com/courses/t07/", image: "static/images/circle07.4.jpg" },
-      circle08: { header: "T08 BLACK: TiMELiNE", text: "T08 BLACK: LiVEiT® PRO LiCENCE (YEARLY)  for LiVEiT® coaches", link: "https://gr0whealthcare.com/courses/2020/", image: "static/images/circle08.4.jpg" },
-circle09: { header: "PLEASE VISIT OUR SPONSORS", text: "Our free courses and community support are part funded by sales from jhe jam shop rehearsal studios® branded merchandise", link: "https://thejamshoprehearsalstudios.com", image: "static/images/circle09.4.jpg" },
-      circle10: { header: "T10 ViOLET: SELF HARM", text: "The Spur of the Moment - HARDBACK", link: "https://amzn.to/4hoGpFY", image: "static/images/circle10.4.jpg" },
-      circle11: { header: "T11 ROSE: CHARiTiES and PROJECTS", text: "We connect those in need with the resources and support they require to address specific challenges. Craig King gr0w©2019", link: "https://calendly.com/gr0whealthcare/new-meeting", image: "static/images/circle11.4.jpg" },
-      circle12: { header: "T12 AQUA: gr0whealthcare© Courses", text: "Our mission is to empower individuals to take control of their health and well being by providing access to comprehensive, personalised care that focuses on prevention and intervention", link: "https://gr0whealthcare.com/courses", image: "static/images/circle12.4.jpg" }
-    };
+  const circleData = {
+    circle01: { header:"#01 BLUE : Understanding Anxiety", text:"Blue is a guided course for managing anxiety...", link:"https://gr0whealthcare.com/courses/liveit-blue-understanding-and-managing-anxiety/", image:"static/images/circle01.4.jpg" },
+    circle02: { header:"#02 ORANGE: Understanding Inflammation & Nutrition", text:"This short course blends science...", link:"https://gr0whealthcare.com/courses/02-orange-understanding-inflammation-rebuilding-through-nutrition/", image:"static/images/circle02.4.jpg" },
+    circle03: { header:"#03 GREEN: Nature, Movement & Cannabinoids", text:"Whether you’re managing burnout...", link:"https://gr0whealthcare.com/courses/03-green-rebuilding-with-nature-movement-cannabinoids/", image:"static/images/circle03.4.jpg" },
+    circle04: { header:"#04 BROWN: Pain Management", text:"Time and time again, our clients say...", link:"https://gr0whealthcare.com/courses/04-pain-management/", image:"static/images/circle04.4.jpg" },
+    circle05: { header:"T05 GREY: Tech Support", text:"Navigating the process of applying for a legal prescription...", link:"https://gr0whealthcare.com/courses/05-referrals/", image:"static/images/circle05.4.jpg" },
+    circle06: { header:"T06 WHITE: LiVEiT® PRO LiCENCE", text:"Better health begins with acceptance...", link:"https://gr0whealthcare.com/courses/06-white-balance-liveit-coaching/", image:"static/images/circle06.4.jpg" },
+    circle07: { header:"T07 RED: Mental Health", text:"LiVEiT® PRO LiCENCE (YEARLY)...", link:"https://gr0whealthcare.com/courses/t07/", image:"static/images/circle07.4.jpg" },
+    circle08: { header:"T08 BLACK: Timeline", text:"T08 BLACK: LiVEiT® PRO LiCENCE...", link:"https://gr0whealthcare.com/courses/2020/", image:"static/images/circle08.4.jpg" },
+    circle09: { header:"PLEASE VISIT OUR SPONSORS", text:"Our free courses are part funded by...", link:"https://thejamshoprehearsalstudios.com", image:"static/images/circle09.4.jpg" },
+    circle10: { header:"T10 ViOLET: SELF HARM", text:"The Spur of the Moment...", link:"https://amzn.to/4hoGpFY", image:"static/images/circle10.4.jpg" },
+    circle11: { header:"T11 ROSE: CHARiTiES & PROJECTS", text:"We connect those in need...", link:"https://calendly.com/gr0whealthcare/new-meeting", image:"static/images/circle11.4.jpg" },
+    circle12: { header:"T12 AQUA: gr0whealthcare© Courses", text:"Our mission is to empower individuals...", link:"https://gr0whealthcare.com/courses", image:"static/images/circle12.4.jpg" }
+  };
 
-    circles.forEach(circle => {
-      circle.addEventListener('click', () => {
-        const data = circleData[circle.id];
-        if (data) {
-          const strokeColor = getComputedStyle(circle).stroke;
-          modalHeader.textContent = data.header;
-          modalText.textContent = data.text;
-          modalLink.href = data.link;
-          modalLink.style.backgroundColor = strokeColor;
-          modalHeader.style.color = strokeColor;
-          document.querySelector('.modal-content').style.backgroundImage = `url(${data.image})`;
-          modal.style.display = 'block';
-        } else {
-          console.error(`No data for circle ID: ${circle.id}`);
-        }
-      });
+  circles.forEach(circle => {
+    circle.addEventListener('click', () => {
+      const data = circleData[circle.id];
+      if (data) {
+        const strokeColor = getComputedStyle(circle).stroke;
+        modalHeader.textContent = data.header;
+        modalText.textContent = data.text;
+        modalLink.href = data.link;
+        modalLink.style.backgroundColor = strokeColor;
+        modalHeader.style.color = strokeColor;
+        document.querySelector('.modal-content').style.backgroundImage = `url(${data.image})`;
+        modal.style.display = 'block';
+      }
     });
+  });
 
-    closeModal.addEventListener('click', () => modal.style.display = 'none');
-    window.addEventListener('click', event => {
-      if (event.target === modal) modal.style.display = 'none';
-    });
-  </script>
+  closeModal.addEventListener('click', () => modal.style.display = 'none');
+  window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none' });
+</script>
 
-<!-- BlueCircle AI floating chat bubble -->
-  <script src="/static/widget.js"></script>
+<script src="/static/widget.js"></script>
 </body>
 </html>
